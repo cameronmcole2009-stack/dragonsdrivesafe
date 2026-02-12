@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragons Drive Safe | Teen Driving Safety Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-green: #0b3d2e;
+            --forest-dark: #062a1f;
+            --forest-light: #0d4d3a;
+            --emerald: #10b981;
+            --emerald-light: #34d399;
+            --emerald-glow: rgba(16, 185, 129, 0.3);
+            --sage: #e8f5e9;
+            --sage-light: #f1f8f4;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 61, 46, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav a:hover,
+        .navbar-nav a.active {
+            color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .navbar-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--emerald-light);
+            border-radius: 2px;
+        }
+
+        .nav-pledge-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-left: 1rem;
+        }
+
+        .nav-pledge-counter span:first-child {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .nav-pledge-counter .pledge-count {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--emerald-light);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 50%, #051f17 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(52, 211, 153, 0.08) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            letter-spacing: -0.02em;
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            color: var(--emerald-light);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-pledge-counter {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 1.25rem 2rem;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .hero-pledge-counter .counter-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-pledge-counter .counter-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--emerald-light);
+            line-height: 1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            background: linear-gradient(135deg, var(--white) 0%, var(--emerald-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--sage);
+            color: var(--forest-green);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Wave Separators */
+        .wave-separator {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+            margin-top: -1px;
+        }
+
+        .wave-separator svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave-separator.flip svg {
+            transform: rotate(180deg);
+            top: 0;
+            bottom: auto;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .problem-content h3 {
+            font-size: 1.5rem;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .problem-content p {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .problem-stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-100);
+        }
+
+        .problem-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--emerald);
+        }
+
+        .problem-stat-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--sage);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .problem-stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            display: block;
+            line-height: 1;
+        }
+
+        .problem-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .stat-source {
+            font-size: 0.65rem;
+            color: var(--gray-400);
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Why It Matters Section */
+        .why-matters {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-matters::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+        }
+
+        .why-matters-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .why-matters h2 {
+            color: var(--white);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-matters > div > p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .why-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .why-stat {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .why-stat:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-5px);
+        }
+
+        .why-stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--emerald-light);
+            display: block;
+            line-height: 1;
+        }
+
+        .why-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.5rem;
+        }
+
+        /* Research Section */
+        .research {
+            background: var(--sage-light);
+        }
+
+        .survey-header {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .survey-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .survey-header h3 {
+            color: var(--forest-green);
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .survey-header p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .progress-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        .progress-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--sage);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .progress-title {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .progress-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--forest-green);
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background: var(--gray-100);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-note {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .research-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        /* Outreach Section */
+        .outreach {
+            background: var(--white);
+        }
+
+        .outreach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .outreach-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-100);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .outreach-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .outreach-card-header {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-light) 100%);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .outreach-card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .outreach-card-header h3 {
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .outreach-card-preview {
+            padding: 1.25rem;
+        }
+
+        .outreach-stat-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .outreach-stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .outreach-stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            min-width: 60px;
+        }
+
+        .outreach-stat-label {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+
+        .outreach-expand-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--sage-light);
+            border: none;
+            color: var(--forest-green);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .outreach-expand-btn:hover {
+            background: var(--sage);
+        }
+
+        .outreach-expand-btn .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .outreach-expand-btn.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
+        .outreach-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--gray-50);
+        }
+
+        .outreach-details.expanded {
+            max-height: 400px;
+        }
+
+        .outreach-details-content {
+            padding: 1.25rem;
+        }
+
+        .outreach-details-content h4 {
+            color: var(--forest-green);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .outreach-details-content ul {
+            list-style: none;
+        }
+
+        .outreach-details-content li {
+            padding: 0.35rem 0;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .outreach-details-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--emerald);
+            font-weight: bold;
+        }
+
+        /* Endorsements Section */
+        .endorsements {
+            background: var(--sage-light);
+        }
+
+        .endorsements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .endorsement-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-100);
+        }
+
+        .endorsement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--emerald);
+        }
+
+        .endorsement-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--emerald) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .endorsement-card h3 {
+            color: var(--forest-green);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .endorsement-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .endorsements-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        /* Impact Section */
+        .impact {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(52, 211, 153, 0.1) 0%, transparent 40%);
+        }
+
+        .impact .section-header h2 {
+            color: var(--white);
+        }
+
+        .impact .section-header p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .impact-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-8px);
+        }
+
+        .impact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .impact-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--emerald-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .impact-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .impact-pledge-counter {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 2rem auto;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-pledge-counter .counter-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-pledge-counter .counter-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--emerald-light);
+            line-height: 1;
+        }
+
+        .impact-message {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.06);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .impact-message-icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .impact-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .impact-message p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 1.25rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team {
+            background: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-100);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--emerald);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--emerald-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .team-card h3 {
+            color: var(--forest-green);
+            font-size: 1.15rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card p {
+            color: var(--emerald);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest-dark);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h4 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            max-width: 280px;
+            font-size: 0.9rem;
+        }
+
+        .footer-section h5 {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--emerald-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--emerald-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 24px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(30px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--emerald) 100%);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 24px 24px 0 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.25);
+            transform: rotate(90deg);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-header h3 {
+            color: var(--white);
+            font-size: 1.35rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-header p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.9rem;
+        }
+
+        .modal-body {
+            padding: 1.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--gray-800);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--emerald);
+            box-shadow: 0 0 0 3px var(--emerald-glow);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--emerald);
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .confirmation-message {
+            text-align: center;
+            padding: 2rem 1rem;
+            display: none;
+        }
+
+        .confirmation-message.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .confirmation-message h4 {
+            color: var(--forest-green);
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .confirmation-message p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .why-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--forest-green);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 0.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+
+            .navbar-nav.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-pledge-counter {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-stats {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-container {
+                padding: 0 1.25rem;
+            }
+
+            .hero {
+                padding: 6rem 1.25rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-pledge-counter .counter-value {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .impact-number {
+                font-size: 2rem;
+            }
+
+            .modal {
+                width: 95%;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <div class="logo-icon">🐉</div>
+                <span>Dragons Drive Safe</span>
+            </a>
+            <ul class="navbar-nav" id="navbarNav">
+                <li><a href="#problem" data-section="problem">The Problem</a></li>
+                <li><a href="#why-matters" data-section="why-matters">Why It Matters</a></li>
+                <li><a href="#research" data-section="research">Research</a></li>
+                <li><a href="#outreach" data-section="outreach">Outreach</a></li>
+                <li><a href="#endorsements" data-section="endorsements">Support</a></li>
+                <li><a href="#impact" data-section="impact">Impact</a></li>
+                <li><a href="#team" data-section="team">Team</a></li>
+                <li class="nav-pledge-counter">
+                    <span>Pledges:</span>
+                    <span class="pledge-count" id="navPledgeCount">150</span>
+                </li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🏆</span>
+                <span>Texas HOSA Community Awareness Project</span>
+            </div>
+            <h1>Dragons Drive Safe</h1>
+            <p class="hero-subtitle">Teen-Led Community Awareness Initiative</p>
+            <p class="hero-meta">Carroll High School | Texas HOSA Chapter 5166</p>
+            <p class="hero-description">Join our mission to create safer roads for Carroll High School students through education, awareness, and community engagement.</p>
+            
+            <div class="hero-pledge-counter">
+                <span class="counter-label">Total Safe Driving Pledges</span>
+                <span class="counter-value" id="heroPledgeCount">150</span>
+            </div>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span>🛡️</span>
+                    <span>Take the Safe Driving Pledge</span>
+                </button>
+                <a href="#impact" class="btn btn-secondary">
+                    <span>📊</span>
+                    <span>View Our Impact</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="6000">0</span>
+                    <span class="hero-stat-label">People Reached</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="150">0</span>
+                    <span class="hero-stat-label">Safety Pledges</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="400">0</span>
+                    <span class="hero-stat-label">Met in Person</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Separator -->
+    <div class="wave-separator">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path fill="#ffffff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"></path>
+        </svg>
+    </div>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">The Reality</span>
+                <h2>Teen Driving Risks</h2>
+                <p>Motor vehicle crashes are the leading cause of death for U.S. teenagers. Understanding the risks is the first step toward prevention.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-content fade-in">
+                    <h3>A Preventable Crisis</h3>
+                    <p>Every day, 8 teenagers lose their lives in vehicle crashes in the United States. Teen drivers ages 16-19 have a fatal crash rate nearly three times as high as drivers ages 20 and older per mile driven.</p>
+                    <p>Through Dragons Drive Safe, we aim to educate at least 300 teens and reduce teen crashes in the Southlake area by 20%. Our comprehensive approach combines research, direct outreach, and community partnerships to create lasting change.</p>
+                    <p><strong>Sources:</strong> CDC, NHTSA, WHO</p>
+                </div>
+                <div class="problem-stats">
+                    <div class="problem-stat-card fade-in">
+                        <div class="problem-stat-icon">🚗</div>
+                        <span class="problem-stat-number" data-count="227000">0</span>
+                        <span class="problem-stat-label">U.S. teens injured in vehicle crashes annually</span>
+                        <span class="stat-source">CDC, 2020</span>
+                    </div>
+                    <div class="problem-stat-card fade-in">
+                        <div class="problem-stat-icon">⚠️</div>
+                        <span class="problem-stat-number" data-count="56">0</span>
+                        <span class="problem-stat-label">% of teen drivers killed were not wearing seatbelts</span>
+                        <span class="stat-source">CDC, 2020</span>
+                    </div>
+                    <div class="problem-stat-card fade-in">
+                        <div class="problem-stat-icon">🌍</div>
+                        <span class="problem-stat-number" data-count="220000">0</span>
+                        <span class="problem-stat-label">Children & teens die globally from road injuries yearly</span>
+                        <span class="stat-source">WHO/UNICEF</span>
+                    </div>
+                    <div class="problem-stat-card fade-in">
+                        <div class="problem-stat-icon">🎯</div>
+                        <span class="problem-stat-number" data-count="3">0</span>
+                        <span class="problem-stat-label">x higher fatal crash rate for teens vs. adults 20+</span>
+                        <span class="stat-source">CDC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Separator -->
+    <div class="wave-separator flip">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path fill="#0b3d2e" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"></path>
+        </svg>
+    </div>
+
+    <!-- Why It Matters Section -->
+    <section id="why-matters" class="why-matters">
+        <div class="container">
+            <div class="why-matters-content fade-in">
+                <h2>Why Safe Driving Matters</h2>
+                <p>Teen drivers are the most at-risk group on the road. Inexperience combined with risk-taking behaviors creates a dangerous combination. The good news: most teen crashes are preventable through education, awareness, and committed safe driving practices.</p>
+                <div class="why-stats">
+                    <div class="why-stat fade-in">
+                        <span class="why-stat-number" data-count="8">0</span>
+                        <span class="why-stat-label">teens die daily in U.S. vehicle crashes</span>
+                    </div>
+                    <div class="why-stat fade-in">
+                        <span class="why-stat-number" data-count="2611">0</span>
+                        <span class="why-stat-label">killed in teen-driver crashes (2023)</span>
+                    </div>
+                    <div class="why-stat fade-in">
+                        <span class="why-stat-number" data-count="2600">0</span>
+                        <span class="why-stat-label">lives saved by seatbelts yearly</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Separator -->
+    <div class="wave-separator">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path fill="#f1f8f4" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"></path>
+        </svg>
+    </div>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Our Data</span>
+                <h2>Community Research & Survey Findings</h2>
+                <p>Insights from Carroll High School students about their driving behaviors and attitudes.</p>
+            </div>
+            <div class="survey-header fade-in">
+                <div class="survey-icon">📊</div>
+                <h3>Safe Drivers Survey</h3>
+                <p>Over <strong>100 responses</strong> collected from Carroll High School students, exceeding our goal of 80 responses.</p>
+            </div>
+            <div class="progress-grid">
+                <div class="progress-card fade-in">
+                    <div class="progress-header">
+                        <div class="progress-icon">🎉</div>
+                        <div>
+                            <div class="progress-title">Prioritize Fun Over Safety</div>
+                            <div class="progress-value">20%+</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-width="20"></div>
+                    </div>
+                    <p class="progress-note">Over 20% of surveyed students admitted to prioritizing having fun over driving safely.</p>
+                </div>
+                <div class="progress-card fade-in">
+                    <div class="progress-header">
+                        <div class="progress-icon">🎵</div>
+                        <div>
+                            <div class="progress-title">Distracted by Loud Music</div>
+                            <div class="progress-value">44%</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-width="44"></div>
+                    </div>
+                    <p class="progress-note">44% of respondents report loud music as their biggest distraction while driving.</p>
+                </div>
+                <div class="progress-card fade-in">
+                    <div class="progress-header">
+                        <div class="progress-icon">⚡</div>
+                        <div>
+                            <div class="progress-title">Regularly Speed</div>
+                            <div class="progress-value">67%</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-width="67"></div>
+                    </div>
+                    <p class="progress-note">67% of surveyed students regularly drive over the speed limit.</p>
+                </div>
+                <div class="progress-card fade-in">
+                    <div class="progress-header">
+                        <div class="progress-icon">📈</div>
+                        <div>
+                            <div class="progress-title">Speeding Doubles Crash Risk</div>
+                            <div class="progress-value">2x</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-width="100"></div>
+                    </div>
+                    <p class="progress-note">Going 10 mph over the speed limit doubles your chances of being in a crash.</p>
+                </div>
+            </div>
+            <div class="research-cta fade-in">
+                <a href="#outreach" class="btn btn-primary">
+                    <span>🚀</span>
+                    <span>See Our Outreach</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outreach Section -->
+    <section id="outreach" class="outreach">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Our Work</span>
+                <h2>Outreach Initiatives</h2>
+                <p>Multiple touchpoints to spread awareness and engage our community in safe driving practices.</p>
+            </div>
+            <div class="outreach-grid">
+                <div class="outreach-card fade-in">
+                    <div class="outreach-card-header">
+                        <div class="outreach-card-icon">📄</div>
+                        <h3>Posters & Pamphlets</h3>
+                    </div>
+                    <div class="outreach-card-preview">
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">200+</span>
+                            <span class="outreach-stat-label">posters and pamphlets distributed</span>
+                        </div>
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">150</span>
+                            <span class="outreach-stat-label">pamphlets hand-distributed</span>
+                        </div>
+                    </div>
+                    <button class="outreach-expand-btn" onclick="toggleOutreach(this)">
+                        <span>Learn More</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="outreach-details">
+                        <div class="outreach-details-content">
+                            <h4>Campaign Details</h4>
+                            <ul>
+                                <li>Eye-catching posters placed throughout CHS</li>
+                                <li>Informative pamphlets with safe driving tips</li>
+                                <li>QR code linking to Safe Drivers Survey</li>
+                                <li>Designed with Southlake Police Department input</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="outreach-card fade-in">
+                    <div class="outreach-card-header">
+                        <div class="outreach-card-icon">📱</div>
+                        <h3>Social Media Campaign</h3>
+                    </div>
+                    <div class="outreach-card-preview">
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">~130</span>
+                            <span class="outreach-stat-label">Instagram followers</span>
+                        </div>
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">4,500+</span>
+                            <span class="outreach-stat-label">TikTok views</span>
+                        </div>
+                    </div>
+                    <button class="outreach-expand-btn" onclick="toggleOutreach(this)">
+                        <span>Learn More</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="outreach-details">
+                        <div class="outreach-details-content">
+                            <h4>Social Media Impact</h4>
+                            <ul>
+                                <li>Instagram: Almost 130 followers, 100s of views per post</li>
+                                <li>~100 likes per Instagram post</li>
+                                <li>TikTok: 4,500+ views with 360+ likes</li>
+                                <li>Estimated ~1,000 total social media interactions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="outreach-card fade-in">
+                    <div class="outreach-card-header">
+                        <div class="outreach-card-icon">✏️</div>
+                        <h3>Chalk Campaign</h3>
+                    </div>
+                    <div class="outreach-card-preview">
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">30+</span>
+                            <span class="outreach-stat-label">chalk messages placed</span>
+                        </div>
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">1,200+</span>
+                            <span class="outreach-stat-label">daily viewers in parking lot</span>
+                        </div>
+                    </div>
+                    <button class="outreach-expand-btn" onclick="toggleOutreach(this)">
+                        <span>Learn More</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="outreach-details">
+                        <div class="outreach-details-content">
+                            <h4>Chalk Campaign Details</h4>
+                            <ul>
+                                <li>30+ colorful chalk messages in student parking lot</li>
+                                <li>High-visibility location with 1,200+ daily viewers</li>
+                                <li>Messages include safety reminders and statistics</li>
+                                <li>Created by student volunteers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="outreach-card fade-in">
+                    <div class="outreach-card-header">
+                        <div class="outreach-card-icon">🍽️</div>
+                        <h3>Lunch Table Campaign</h3>
+                    </div>
+                    <div class="outreach-card-preview">
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">150+</span>
+                            <span class="outreach-stat-label">students spoken to (goal: 50)</span>
+                        </div>
+                        <div class="outreach-stat-row">
+                            <span class="outreach-stat-number">100%</span>
+                            <span class="outreach-stat-label">materials donated by SPD</span>
+                        </div>
+                    </div>
+                    <button class="outreach-expand-btn" onclick="toggleOutreach(this)">
+                        <span>Learn More</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="outreach-details">
+                        <div class="outreach-details-content">
+                            <h4>Lunch Campaign Success</h4>
+                            <ul>
+                                <li>Exceeded goal: 150+ students vs. 50 target</li>
+                                <li>Direct one-on-one conversations about safe driving</li>
+                                <li>All materials donated by Southlake Police Department</li>
+                                <li>Pledge cards distributed and collected</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Endorsements Section -->
+    <section id="endorsements" class="endorsements">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Community Support</span>
+                <h2>Endorsements & Partnerships</h2>
+                <p>Supported by local leaders and organizations committed to teen safety.</p>
+            </div>
+            <div class="endorsements-grid">
+                <div class="endorsement-card fade-in">
+                    <div class="endorsement-icon">🏛️</div>
+                    <h3>Mayor of Southlake</h3>
+                    <p>Official support from the Mayor's office for our teen driving safety initiative, recognizing the importance of community-led awareness campaigns.</p>
+                </div>
+                <div class="endorsement-card fade-in">
+                    <div class="endorsement-icon">👮</div>
+                    <h3>Southlake Police Department</h3>
+                    <p>Collaborated on materials and outreach efforts. Donated all educational materials for our lunch table campaign.</p>
+                </div>
+                <div class="endorsement-card fade-in">
+                    <div class="endorsement-icon">🏫</div>
+                    <h3>CHS Administration</h3>
+                    <p>Principal made a schoolwide announcement reaching over 1,200 students, amplifying our message across campus.</p>
+                </div>
+                <div class="endorsement-card fade-in">
+                    <div class="endorsement-icon">🤝</div>
+                    <h3>CHS Student Council</h3>
+                    <p>Partnership to amplify our message across the student body and integrate safe driving into school culture.</p>
+                </div>
+            </div>
+            <div class="endorsements-cta fade-in">
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span>🛡️</span>
+                    <span>Join the Movement</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label" style="background: rgba(255,255,255,0.15); color: var(--white);">Results</span>
+                <h2>Our Impact</h2>
+                <p>Measurable results from our community awareness campaign.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">👥</div>
+                    <span class="impact-number" data-count="400">0</span>
+                    <span class="impact-label">people met in person</span>
+                </div>
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">✋</div>
+                    <span class="impact-number" data-count="150">0</span>
+                    <span class="impact-label">individuals pledged to drive safely</span>
+                </div>
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">📢</div>
+                    <span class="impact-number" data-count="6000">0</span>
+                    <span class="impact-label">estimated total reach</span>
+                </div>
+            </div>
+            
+            <div class="impact-pledge-counter fade-in">
+                <div class="counter-label">Total Safe Driving Pledges</div>
+                <div class="counter-value" id="impactPledgeCount">150</div>
+            </div>
+            
+            <div class="impact-message fade-in">
+                <div class="impact-message-icon">🐉</div>
+                <h3>Students United for Safer Roads</h3>
+                <p>Through Dragons Drive Safe, Carroll High School students have come together to create safer, more aware drivers in our community. Every conversation, every pledge, and every share brings us closer to our goal of reducing teen crashes.</p>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span>🛡️</span>
+                    <span>Join the Movement</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">The Team</span>
+                <h2>Meet Our Team</h2>
+                <p>The dedicated HOSA members behind Dragons Drive Safe.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h3>Melissa Robinowitz</h3>
+                    <p>Team Member</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h3>Armani Karmali</h3>
+                    <p>Team Member</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h3>Cameron Cole</h3>
+                    <p>Team Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4><span>🐉</span> Dragons Drive Safe</h4>
+                <p>Carroll High School's HOSA Community Awareness Project dedicated to promoting teen driving safety in Southlake, Texas.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="#problem">The Problem</a></li>
+                    <li><a href="#why-matters">Why It Matters</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#outreach">Outreach</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Resources</h5>
+                <ul>
+                    <li><a href="https://www.cdc.gov/teen-drivers/" target="_blank">CDC Teen Drivers</a></li>
+                    <li><a href="https://www.nhtsa.gov/road-safety/teen-driving" target="_blank">NHTSA Teen Safety</a></li>
+                    <li><a href="#" onclick="openModal(); return false;">Take the Pledge</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Affiliations</h5>
+                <div class="footer-badges">
+                    <div class="footer-badge">
+                        <span>🏆</span>
+                        <span>Texas HOSA</span>
+                    </div>
+                    <div class="footer-badge">
+                        <span>🏫</span>
+                        <span>Carroll High School</span>
+                    </div>
+                    <div class="footer-badge">
+                        <span>📛</span>
+                        <span>Chapter 5166</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Dragons Drive Safe. All rights reserved. | Carroll High School HOSA Chapter 5166</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Pledge Modal -->
+    <div class="modal-overlay" id="pledgeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">×</button>
+                <div class="modal-icon">🛡️</div>
+                <h3>Take the Safe Driving Pledge</h3>
+                <p>Join <span id="modalPledgeCount">150</span> students committed to safer roads</p>
+            </div>
+            <div class="modal-body">
+                <form id="pledgeForm" onsubmit="submitPledge(event)">
+                    <div class="form-group">
+                        <label for="pledgeName">Full Name</label>
+                        <input type="text" id="pledgeName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="pledgeGrade">Grade</label>
+                        <select id="pledgeGrade" name="grade" required>
+                            <option value="">Select your grade</option>
+                            <option value="9">9th Grade</option>
+                            <option value="10">10th Grade</option>
+                            <option value="11">11th Grade</option>
+                            <option value="12">12th Grade</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="pledgeConfirm" name="pledge" required>
+                            <label for="pledgeConfirm">I commit to practicing safe and responsible driving.</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <span>✋</span>
+                        <span>Take the Pledge</span>
+                    </button>
+                </form>
+                <div class="confirmation-message" id="confirmationMessage">
+                    <div class="confirmation-icon">🎉</div>
+                    <h4>Thank You for Committing to Safer Roads.</h4>
+                    <p>You've joined the movement for safer driving. Together, we're making our roads safer for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global pledge counter
+        let pledgeCount = 150;
+
+        // Update all pledge counters
+        function updatePledgeCounters() {
+            const counters = document.querySelectorAll('#heroPledgeCount, #navPledgeCount, #impactPledgeCount, #modalPledgeCount');
+            counters.forEach(counter => {
+                animateCounterValue(counter, parseInt(counter.textContent), pledgeCount);
+            });
+        }
+
+        // Animate counter value change
+        function animateCounterValue(element, start, end) {
+            const duration = 800;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (end - start) * easeProgress);
+                element.textContent = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navbarNav = document.getElementById('navbarNav');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navbarNav.classList.toggle('active');
+            mobileMenuToggle.textContent = navbarNav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.navbar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarNav.classList.remove('active');
+                mobileMenuToggle.textContent = '☰';
+            });
+        });
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('pledgeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('pledgeModal').classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                document.getElementById('pledgeForm').reset();
+                document.getElementById('pledgeForm').style.display = 'block';
+                document.getElementById('confirmationMessage').classList.remove('active');
+            }, 300);
+        }
+
+        document.getElementById('pledgeModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeModal();
+            }
+        });
+
+        // Submit pledge form
+        function submitPledge(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('pledgeName').value.trim();
+            const grade = document.getElementById('pledgeGrade').value;
+            const confirmed = document.getElementById('pledgeConfirm').checked;
+            
+            if (!name || !grade || !confirmed) {
+                return;
+            }
+            
+            pledgeCount++;
+            updatePledgeCounters();
+            
+            document.getElementById('pledgeForm').style.display = 'none';
+            document.getElementById('confirmationMessage').classList.add('active');
+            
+            setTimeout(() => {
+                closeModal();
+            }, 2500);
+        }
+
+        // Expandable outreach cards
+        function toggleOutreach(btn) {
+            const card = btn.closest('.outreach-card');
+            const details = card.querySelector('.outreach-details');
+            const isExpanded = details.classList.contains('expanded');
+            
+            document.querySelectorAll('.outreach-details.expanded').forEach(d => {
+                d.classList.remove('expanded');
+                d.closest('.outreach-card').querySelector('.outreach-expand-btn').classList.remove('expanded');
+                d.closest('.outreach-card').querySelector('.outreach-expand-btn span:first-child').textContent = 'Learn More';
+            });
+            
+            if (!isExpanded) {
+                details.classList.add('expanded');
+                btn.classList.add('expanded');
+                btn.querySelector('span:first-child').textContent = 'Show Less';
+            }
+        }
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        fadeElements.forEach(el => fadeInObserver.observe(el));
+
+        // Animated number counters
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(target * easeProgress);
+                element.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-count]').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Progress bar animation
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = width + '%';
+                    }, 200);
+                    progressObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+            progressObserver.observe(bar);
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        });
+
+        // Scroll spy for navigation
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav a[data-section]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.2)';
+            } else {
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
+            }
+        });
+    </script>
+</body>
+</html>
